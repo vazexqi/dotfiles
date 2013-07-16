@@ -1,0 +1,22 @@
+autodetach on
+startup_message off
+# escape `` # remaps Ctrl-A to ` for easier access
+vbell off 
+shell "/bin/zsh"
+
+# #aterm bindings
+# bindkey "^[[c" next
+# bindkey "^[[d" prev
+# bindkey "^[Oc" next
+# bindkey "^[Od" prev
+
+# #putty bindings
+# bindkey "^[OC" next
+# bindkey "^[OD" prev
+
+termcapinfo xterm "ks=\E[?1l\E=:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-b gk}%+w%<"
+
+# #xterm(?) bindings
+# bindkey ";5C" next
+# bindkey ";5D" prev
