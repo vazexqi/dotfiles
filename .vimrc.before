@@ -1,0 +1,6 @@
+let g:Powerline_symbols = 'fancy'
+call janus#disable_plugin('vimwiki')
+call janus#disable_plugin('vroom')
+call janus#disable_plugin('pep8')
+call janus#disable_plugin('supertab')
+call janus#disable_plugin('gundo')

@@ -1,0 +1,54 @@
+" Change the default color scheme
+set background=dark
+colorscheme molokai
+
+" So that you can go up and down even on single sentences that span multiple rows 
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" Spell-checker
+" http://web.cs.swarthmore.edu/help/vim/vim7.html
+if has("spell")
+  " turn spelling off by default
+  " set spell
+
+  " toggle spelling with F4 key
+  map <F4> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
+
+  highlight PmenuSel ctermfg=black ctermbg=lightgray
+
+  set sps=best,10
+endif
+
+" http://stackoverflow.com/questions/1979520/auto-open-nerdtree-in-every-tab
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
+
+unmap <Leader>n
+noremap <Leader>nt :NERDTreeToggle<CR>
+noremap <Leader>nn :NERDTreeFocus<CR>
+noremap <Leader>nf :NERDTreeFind<CR>
+
+" http://vim-latex.sourceforge.net/documentation/latex-suite.html
+let g:tex_flavor='latex'
+
+" fix nonsense gw remap in Janus
+nunmap gw
+nnoremap <C-q> gwip
+
+" vim Powerline status
+set guifont=Menlo\ for\ Powerline
+
+" http://vimcasts.org/episodes/soft-wrapping-text/
+command! -nargs=* Wrap set wrap linebreak nolist
+
+" enable mouse in terminal vim
+set mouse=a
