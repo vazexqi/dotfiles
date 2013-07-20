@@ -51,12 +51,3 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/araxisgitmerge-w.sh \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\"
 	trustExitCode = true
 
-[difftool "araxis"]
-  cmd = araxisgitdiff \"$LOCAL\" \"$REMOTE\"
-
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-	trustExitCode = true
-
-[mergetool "araxis"]
-  cmd = araxisgitmerge \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\"
