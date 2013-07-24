@@ -21,9 +21,7 @@ Kaleidoscope.args = --merge --output $output --base $base -- $local $other
 
 [ui]
 ssh = ssh -Contrib
-username=Nick Chen <nchen@illinois.edu>
+username=Nick Chen <nchen.dev@mac.com>
 editor = mvim
 style=compact
-
-ignore=/Users/vazexqi/.hgignore_global
 
