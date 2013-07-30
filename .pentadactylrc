@@ -1,0 +1,10 @@
+"1.0b7.2 "(created 2011/08/05 11:03:59)"
+
+loadplugins '\.(js|penta)$'
+group user
+map -modes=n,v M -ex toolbartoggle Navigation Toolbar
+set hintkeys=asdfg;lkjh
+set defsearch=g
+highlight -a Hint text-transform: uppercase;
+
+" vim: set ft=pentadactyl:
