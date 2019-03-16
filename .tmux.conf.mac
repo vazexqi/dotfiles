@@ -1,9 +1,6 @@
 # .tmux.conf file inspired from Pragmatic Tmux
 # http://pragprog.com/book/bhtmux/tmux
 
-# Default to zsh with support for Mac OS X clipboard
-set-option -g default-command "/opt/local/bin/reattach-to-user-namespace /bin/zsh -l"
-
 # https://wiki.archlinux.org/index.php/Tmux
 # Set more scrollback history
 # START:scrollback
@@ -12,12 +9,12 @@ set -g history-limit 10000
 
 # Setting the prefix from C-b to C-a
 # START:prefix
-set -g prefix C-a  
+set -g prefix C-a
 # END:prefix
 
 # Free the original Ctrl-b prefix keybinding
 # START:unbind
-unbind C-b 
+unbind C-b
 # END:unbind
 
 #setting the delay between prefix and command
@@ -54,10 +51,10 @@ bind s split-window -v
 
 # moving between panes
 # START:paneselect
-bind h select-pane -L 
-bind j select-pane -D 
+bind h select-pane -L
+bind j select-pane -D
 bind k select-pane -U
-bind l select-pane -R 
+bind l select-pane -R
 # END:paneselect
 
 # Quick pane selection
@@ -68,19 +65,16 @@ bind -r C-l select-window -t :+
 
 # Pane resizing
 # START:paneresize
-bind -r H resize-pane -L 5 
-bind -r J resize-pane -D 5 
-bind -r K resize-pane -U 5 
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
 bind -r L resize-pane -R 5
 # END:paneresize
- 
+
 # mouse support - set to on if you want to use the mouse
-# START:mouse
-setw -g mode-mouse on 
-set -g mouse-select-pane on 
-set -g mouse-resize-pane on 
-set -g mouse-select-window on
-# END:mouse
+# # START:mouse
+set -g mouse on
+# # END:mouse
 
  # Set the default terminal mode to 256color mode
 # START:termcolor
@@ -101,18 +95,18 @@ set -g status-bg black
 
 # set the color of the window list
  # START:windowstatuscolor
-setw -g window-status-fg cyan 
-setw -g window-status-bg default 
+setw -g window-status-fg cyan
+setw -g window-status-bg default
 setw -g window-status-attr dim
 # END:windowstatuscolor
 
 # set colors for the active window
 # START:activewindowstatuscolor
-setw -g window-status-current-fg white 
-setw -g window-status-current-bg red 
+setw -g window-status-current-fg white
+setw -g window-status-current-bg red
 setw -g window-status-current-attr bright
 # END:activewindowstatuscolor
- 
+
 # pane colors
 # START:panecolors
 # https://github.com/sjl/dotfiles/blob/master/tmux/tmux.conf
@@ -127,7 +121,7 @@ set -g message-bg black
 set -g message-attr bright
 # END:cmdlinecolors
 
-# Status line 
+# Status line
 # START:statusline
 # http://www.drbunsen.org/text-triumvirate.html
 set -g status-left-length 52
@@ -147,10 +141,6 @@ set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour39]⮀#[fg=colour25,bg=colour39,noreverse,bold] #I ⮁ #W #[fg=colour39,bg=colour234,nobold]⮀"
  # END:statusline
 
-#START:utf8
-set -g status-utf8 on
-#END:utf8
-
  # Update the status bar every sixty seconds
 # START:updateinterval
 set -g status-interval 60
@@ -158,15 +148,17 @@ set -g status-interval 60
 
 # enable vi keys.
 # START:vikeys
+# Use vim keybindings in copy mode
+# http://robots.thoughtbot.com/how-to-copy-and-paste-with-tmux-on-mac-os-x
 setw -g mode-keys vi
-# http://blog.sanctum.geek.nz/vi-mode-in-tmux/
-# https://github.com/sjl/dotfiles/blob/master/tmux/tmux.conf
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
-bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
+
+# Setup 'v' to begin selection as in Vim
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 # END:vikeys
 
 # Maximize and restore a pane
